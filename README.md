@@ -26,15 +26,15 @@ This skill gives the agent three things:
 You need Node.js 18 or newer.
 
 ```bash
-npx skills add YOUR-GITHUB-USERNAME/ui-ux-craft
+npx skills add Vr3n/ui-ux-craft
 ```
 
 Useful options of the same command:
 
 ```bash
-npx skills add YOUR-GITHUB-USERNAME/ui-ux-craft --list          # see what is in the repo
-npx skills add YOUR-GITHUB-USERNAME/ui-ux-craft -g              # install for all your projects
-npx skills add YOUR-GITHUB-USERNAME/ui-ux-craft -a claude-code  # choose an agent
+npx skills add Vr3n/ui-ux-craft --list          # see what is in the repo
+npx skills add Vr3n/ui-ux-craft -g              # install for all your projects
+npx skills add Vr3n/ui-ux-craft -a claude-code  # choose an agent
 ```
 
 To test from a local copy: `npx skills add . --list` inside this folder.
