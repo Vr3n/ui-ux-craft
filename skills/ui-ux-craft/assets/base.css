@@ -1,0 +1,42 @@
+/* ui-ux-craft base layer. Works with the tokens from scripts/gen-tokens.mjs.
+   Small on purpose: it fixes the things people forget (focus, hit size, motion, contrast mode). */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-block: var(--space-16, 4rem); }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: var(--weight-regular, 400) var(--text-base, 1rem)/var(--text-base-lh, 1.5rem) var(--font-sans, system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4 { margin: 0 0 var(--space-3, .75rem); font-weight: var(--weight-semibold, 600); text-wrap: balance; }
+h1 { font-size: var(--text-4xl); line-height: var(--text-4xl-lh); letter-spacing: var(--tracking-tight); }
+h2 { font-size: var(--text-3xl); line-height: var(--text-3xl-lh); letter-spacing: var(--tracking-tight); }
+h3 { font-size: var(--text-xl); line-height: var(--text-xl-lh); }
+/* Rhythm: a heading that follows content gets room above it, so sections read as groups. */
+* + h2 { margin-block-start: var(--space-12, 3rem); }
+* + h3 { margin-block-start: var(--space-8, 2rem); }
+p { margin: 0 0 var(--space-4, 1rem); max-inline-size: var(--measure, 65ch); text-wrap: pretty; }
+a { color: var(--accent-text); text-underline-offset: 0.2em; }
+img, svg, video { max-inline-size: 100%; block-size: auto; }
+::selection { background: var(--accent-bg); color: var(--text); }
+
+/* Focus: always visible for keyboard users, never for mouse clicks. */
+:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; border-radius: var(--radius-sm, .375rem); }
+:focus:not(:focus-visible) { outline: none; }
+
+/* Controls: big enough to hit. 44px on touch (Apple default), 28px for mouse (Apple macOS default). */
+button, [role="button"], input, select, textarea, summary { min-block-size: var(--target-pointer, 1.75rem); font: inherit; }
+@media (pointer: coarse) { button, [role="button"], input, select, textarea, summary { min-block-size: var(--target-touch, 2.75rem); } }
+button, [role="button"] { cursor: pointer; }
+button[disabled], [aria-disabled="true"] { cursor: not-allowed; opacity: 0.55; }
+input, select, textarea { border: 1px solid var(--border-strong); border-radius: var(--radius-md, .625rem); background: var(--surface); color: var(--text); padding-inline: var(--space-3, .75rem); }
+input::placeholder, textarea::placeholder { color: var(--text-muted); opacity: 1; }
+[aria-invalid="true"] { border-color: var(--danger-text); }  /* pair with an icon + message; colour alone is not enough */
+
+/* Motion: keep it short, and calm it down when asked. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 1ms !important; }
+}
+/* People who turn on "Increase contrast" get stronger edges. */
+@media (prefers-contrast: more) { :root { --border: var(--border-strong); --text-muted: var(--text); } }
+/* Windows forced-colors mode keeps its own palette; make sure outlines survive. */
+@media (forced-colors: active) { :focus-visible { outline: 2px solid Highlight; } }

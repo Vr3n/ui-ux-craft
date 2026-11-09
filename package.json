@@ -1,0 +1,8 @@
+{
+  "name": "ui-ux-craft",
+  "version": "1.0.0",
+  "description": "Agent skill for high-fidelity UI and usable UX, with contrast, token, lint and browser-audit scripts.",
+  "license": "MIT",
+  "private": true,
+  "scripts": { "test": "node skills/ui-ux-craft/scripts/selftest.mjs" }
+}
